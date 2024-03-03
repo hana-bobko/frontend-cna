@@ -3,7 +3,6 @@ import { Grid, Typography, Stack, useMediaQuery } from "@mui/material";
 import styled from "styled-components";
 
 //Form
-import FormRegister from "src/components/Form/FormRegister";
 
 const Inclined = styled.div`
   margin-top: -40px;
@@ -50,7 +49,8 @@ function Page3() {
           sx={{ textAlign: (isMobile && "center") || "" }}
           variant={(isMobile && "h4") || "h2"}
         >
-          Pronto para prosperar <br /> no mercado imobiliário <br /> com as vantagens da <br />
+          Pronto para prosperar <br /> no mercado imobiliário <br /> com as
+          vantagens da <br />
           Onda Segura?
         </Typography>
       </div>
@@ -60,9 +60,7 @@ function Page3() {
           marginTop: "40px",
           backgroundColor: "white",
         }}
-      >
-        <FormRegister />
-      </div>
+      ></div>
       <Inclined />
     </Grid>
   );
