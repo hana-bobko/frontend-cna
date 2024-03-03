@@ -24,7 +24,6 @@ const App = (props) => {
   const getLayout = Component.getLayout ?? ((page) => page);
 
   const theme = createTheme();
-  console.log("passou aqui");
   return (
     <CacheProvider value={emotionCache}>
       <Head>
