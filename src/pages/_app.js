@@ -13,7 +13,17 @@ import "simplebar-react/dist/simplebar.min.css";
 const clientSideEmotionCache = createEmotionCache();
 
 const SplashScreen = () => {
-  return <div style={{ backgroundColor: "red" }}></div>;
+  return (
+    <div
+      style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+      }}
+    >
+      <p>redirecionando...</p>
+    </div>
+  );
 };
 
 const App = (props) => {
@@ -22,8 +32,11 @@ const App = (props) => {
   useNProgress();
 
   const getLayout = Component.getLayout ?? ((page) => page);
-
-  const theme = createTheme();
+  const theme = createTheme({
+    typography: {
+      fontFamily: "Montserrat",
+    },
+  });
   return (
     <CacheProvider value={emotionCache}>
       <Head>

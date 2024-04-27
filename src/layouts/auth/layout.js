@@ -64,7 +64,7 @@ export const Layout = (props) => {
         >
           <div
             style={{
-              background: "red",
+              backdropFilter: "blur(0px)",
               backgroundImage: `url(${Imagem?.src})`,
               backgroundSize: "cover",
               backgroundPosition: "center",
