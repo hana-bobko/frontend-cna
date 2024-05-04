@@ -1,7 +1,17 @@
-import { Box, Button, Container, Stack, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Stack,
+  Typography,
+  Drawer,
+  useMediaQuery,
+  IconButton,
+} from "@mui/material";
 import { Layout as MainLayout } from "src/layouts/main/layout";
 import { Layout as AuthLayout } from "src/layouts/auth/layout";
 import NextLink from "next/link";
+import React, { useState } from "react";
 import Head from "next/head";
 import styles from "./layout.module.css";
 import cao from "../../public/assets/imagens/cao.png";
@@ -11,8 +21,12 @@ import bg from "../../public/assets/imagens/background-dark.jpg";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import { styled } from "@mui/material/styles";
-import { width } from "@mui/system";
+import { textAlign, width } from "@mui/system";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+
 function Page() {
+  const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
+  const [open, setOpen] = useState(false);
   const Text = styled((props) => <Typography disableRipple {...props} />)(
     ({ theme }) => ({
       textTransform: "none",
@@ -22,7 +36,7 @@ function Page() {
       },
       fontWeight: theme.typography.fontWeightRegular,
       marginRight: theme.spacing(1),
-      color: "rgba(0, 0, 0, 0.85)",
+      color: lgUp ? theme.palette.success.dark : theme.palette.success.light,
       fontFamily: ["Candara"].join(","),
       //fontFamily: ["Courier"].join(","), LETRA DE CÓDIGO
 
@@ -35,6 +49,126 @@ function Page() {
       },
     })
   );
+  async function onClose() {
+    setOpen(false);
+  }
+  const content = (
+    <>
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: lgUp ? "space-between" : "center",
+          alignItems: "center",
+          flexDirection: lgUp ? "row" : "column",
+          alignItems: "center",
+          width: lgUp ? "400px" : "200px",
+          py: 2,
+        }}
+      >
+        <img
+          style={{
+            width: 60,
+            height: 60,
+            backgroundColor: "white",
+            borderRadius: 50,
+            marginLeft: 10,
+            marginTop: 10,
+          }}
+          src={logo.src}
+        />
+        <Text
+          variant={lgUp ? "h6" : "subtitle2"}
+          sx={{ width: lgUp ? "400px" : "200px", textAlign: "center" }}
+        >
+          CNA - Por um futuro onde todos os animais são amados e protegidos.
+        </Text>
+      </Box>
+
+      <Box sx={{ display: "flex", flexDirection: lgUp ? "row" : "column" }}>
+        <Button
+          LinkComponent={NextLink}
+          href="https://shre.ink/8eCx"
+          variant="text"
+          sx={{
+            "&:hover": {
+              color: lgUp ? "#336600" : "success.light",
+              bgcolor: "transparent",
+            },
+            color: lgUp ? "#336600" : "success.light",
+            bgcolor: "transparent",
+          }}
+        >
+          ONGs
+        </Button>
+        <Button
+          LinkComponent={NextLink}
+          href="https://shre.ink/8eCx"
+          variant="text"
+          sx={{
+            "&:hover": {
+              color: lgUp ? "#336600" : "success.light",
+              bgcolor: "transparent",
+            },
+            color: lgUp ? "#336600" : "success.light",
+            bgcolor: "transparent",
+          }}
+        >
+          Junte-se a nós
+        </Button>
+        <Button
+          LinkComponent={NextLink}
+          href="https://shre.ink/8eCx"
+          variant="text"
+          sx={{
+            "&:hover": {
+              color: lgUp ? "#336600" : "success.light",
+              bgcolor: "transparent",
+            },
+            color: lgUp ? "#336600" : "success.light",
+            bgcolor: "transparent",
+          }}
+        >
+          Quem somos
+        </Button>
+        <Button
+          LinkComponent={NextLink}
+          href="https://shre.ink/8eCx"
+          variant="text"
+          sx={{
+            "&:hover": {
+              color: lgUp ? "#336600" : "success.light",
+              bgcolor: "transparent",
+            },
+            color: lgUp ? "#336600" : "success.light",
+            bgcolor: "transparent",
+          }}
+        >
+          Contato
+        </Button>
+        <Button
+          LinkComponent={NextLink}
+          href="https://shre.ink/8eCs"
+          size="small"
+          variant="contained"
+          sx={{
+            //border: "2px solid #fff",
+            boxShadow: 8,
+            bgcolor: lgUp ? "#336600" : "success.light",
+            color: lgUp ? "#fff" : "#336600",
+            borderRadius: 1,
+            "&:hover": {
+              // border: "2px solid #336600",
+              bgcolor: lgUp ? "#336600" : "success.light",
+              color: lgUp ? "#fff" : "#336600",
+            },
+          }}
+        >
+          Buy me a whiskas
+        </Button>
+      </Box>
+    </>
+  );
+
   return (
     <>
       <Head>
@@ -50,145 +184,91 @@ function Page() {
       >
         <Box
           sx={{
-            //backgroundImage: `url(${bg?.src})`,
-            //backgroundSize: "cover",
             backgroundPosition: "center",
             position: "fixed",
             top: 0,
             left: 0,
+            px: lgUp ? 0 : 10,
             width: "100%",
             height: "100%",
             display: "flex",
             flexDirection: "column",
             backgroundColor: "#C5F299",
-            alignItems: "center",
+            //alignItems: "center",
+            overflowY: "scroll",
+            scrollbarWidth: "none",
           }}
         >
-          <Box
-            component="header"
-            sx={{
-              //bgcolor: "red",
-              //boxShadow: 8,
-              position: "sticky",
-              top: 0,
-              width: "100%",
-              backgroundColor: "rgba(250, 250, 250, 0)",
-              backdropFilter: "blur(2px)",
-            }}
-          >
-            <Stack
-              direction={"row"}
-              alignItems={"center"}
-              justifyContent={"space-between"}
-              spacing={2}
+          {(lgUp && (
+            <Box
+              component="header"
               sx={{
-                minHeight: 60,
-                px: 2,
+                position: "sticky",
+                top: 0,
+                width: "100%",
+                backgroundColor: "rgba(250, 250, 250, 0)",
+                backdropFilter: "blur(2px)",
               }}
             >
-              <Box
+              <Stack
+                direction={"row"}
+                alignItems={"center"}
+                justifyContent={"space-between"}
+                spacing={2}
                 sx={{
-                  display: "flex",
-                  justifyContent: "space-between",
-                  alignItems: "center",
-                  width: "400px",
-                  py: 2,
+                  minHeight: 60,
+                  px: 2,
                 }}
               >
-                <img
-                  style={{
-                    width: 60,
-                    height: 60,
-                    backgroundColor: "white",
-                    borderRadius: 50,
-                    marginLeft: 10,
-                  }}
-                  src={logo.src}
-                />
-                <Text variant="h6" sx={{ width: "300px" }}>
-                  CNA - Por um futuro onde todos os animais são amados e
-                  protegidos.
-                </Text>
-              </Box>
-              <Box>
-                <Button
-                  LinkComponent={NextLink}
-                  href="https://shre.ink/8eCx"
-                  variant="text"
-                  sx={{
-                    "&:hover": { color: "#336600", bgcolor: "transparent" },
-                    color: "#336600",
-                    bgcolor: "transparent",
-                  }}
-                >
-                  ONGs
-                </Button>
-                <Button
-                  LinkComponent={NextLink}
-                  href="https://shre.ink/8eCx"
-                  variant="text"
-                  sx={{
-                    "&:hover": { color: "#336600", bgcolor: "transparent" },
-                    color: "#336600",
-                    bgcolor: "transparent",
-                  }}
-                >
-                  Junte-se a nós
-                </Button>
-                <Button
-                  LinkComponent={NextLink}
-                  href="https://shre.ink/8eCx"
-                  variant="text"
-                  sx={{
-                    "&:hover": { color: "#336600", bgcolor: "transparent" },
-                    color: "#336600",
-                    bgcolor: "transparent",
-                  }}
-                >
-                  Quem somos
-                </Button>
-                <Button
-                  LinkComponent={NextLink}
-                  href="https://shre.ink/8eCx"
-                  variant="text"
-                  sx={{
-                    "&:hover": { color: "#336600", bgcolor: "transparent" },
-                    color: "#336600",
-                    bgcolor: "transparent",
-                  }}
-                >
-                  Contato
-                </Button>
-                <Button
-                  LinkComponent={NextLink}
-                  href="https://shre.ink/8eCs"
-                  size="small"
-                  variant="contained"
-                  sx={{
-                    //border: "2px solid #fff",
-                    boxShadow: 8,
-                    bgcolor: "#336600",
-                    color: "#fff",
-                    borderRadius: 1,
-                    "&:hover": {
-                      // border: "2px solid #fff",
-                      bgcolor: "#336600",
-                      color: "#fff",
-                    },
-                  }}
-                >
-                  Buy me a whiskas
-                </Button>
-              </Box>
-            </Stack>
-          </Box>
+                {content}
+              </Stack>
+            </Box>
+          )) || (
+            <Box sx={{ display: "flex", justifyContent: "space-between" }}>
+              <Box />
+              <IconButton
+                sx={{
+                  right: 0,
+                  position: "fixed",
+                }}
+                onClick={() => setOpen(true)}
+              >
+                <MenuOutlinedIcon />
+              </IconButton>
+              <Drawer
+                anchor="right"
+                open={open}
+                onClose={onClose}
+                PaperProps={{
+                  sx: {
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    backdropFilter: "blur(6px)",
+                    backgroundColor: "rgba(100, 100, 100, 0.3)",
+                    color: "common.white",
+                    boxShadow: 1,
+                    width: 220,
+                    overflow: "auto",
+                    scrollbarWidth: "none",
+                    // border: "1px solid #ccc",
+                  },
+                }}
+                variant="temporary"
+              >
+                {content}
+              </Drawer>
+            </Box>
+          )}
 
           <Box
             className={styles.slide}
             sx={{
               display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-around",
+              flexDirection: lgUp ? "row" : "column-reverse",
+              justifyContent: lgUp ? "space-around" : "center",
+              alignItems: lgUp ? "space-around" : "center",
               mt: 20,
               width: "100%",
             }}
@@ -225,7 +305,12 @@ function Page() {
               src={pet1.src}
             />
           </Box>
-          <Text className={styles.slide} sx={{ mt: 10 }} variant="h3">
+
+          <Text
+            className={styles.slide}
+            sx={{ mt: 10, color: "success.dark", mx: 6 }}
+            variant="h3"
+          >
             Em breve um app que mudará o futuro dos nossos amiguinhos!
           </Text>
         </Box>
