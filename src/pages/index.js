@@ -145,6 +145,27 @@ function Page() {
                 >
                     Buy me a whiskas
                 </Button>
+                <Button
+                    LinkComponent={NextLink}
+                    href="/auth/login"
+                    size="small"
+                    variant="text"
+                    sx={{
+                        //border: "2px solid #fff",
+                        //boxShadow: 8,
+                        //bgcolor: lgUp ? "#336600" : "success.light",
+                        ml: 1,
+                        color: "#336600",
+                        borderRadius: 1,
+                        "&:hover": {
+                            // border: "2px solid #336600",
+                            bgcolor: lgUp ? "#33660025" : "success.light",
+                            color: "#336600",
+                        },
+                    }}
+                >
+                    Entrar
+                </Button>
             </Box>
         </>
     );
