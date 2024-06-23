@@ -1,18 +1,10 @@
-import { Box, Button, Grid, Stack, Typography, Drawer, useMediaQuery, IconButton } from "@mui/material";
-import { Layout as MainLayout } from "src/layouts/main/layout";
-import { Layout as AuthLayout } from "src/layouts/auth/layout";
+import { Box, Button, Stack, Typography, Drawer, useMediaQuery, IconButton } from "@mui/material";
 import NextLink from "next/link";
 import React, { useState } from "react";
 import Head from "next/head";
 import styles from "./layout.module.css";
-import cao from "../../public/assets/imagens/cao.png";
 import pet1 from "../../public/assets/imagens/pet-1.jpg";
 import logo from "../../public/assets/icons/favicon.png";
-import bg from "../../public/assets/imagens/background-dark.jpg";
-import ImageList from "@mui/material/ImageList";
-import ImageListItem from "@mui/material/ImageListItem";
-import { styled } from "@mui/material/styles";
-import { TypographyAlign, width } from "@mui/system";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 
 function Page() {

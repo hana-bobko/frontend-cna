@@ -1,5 +1,5 @@
 CNA - App Nacional de registro de adotantes de animais Protegento os animais de futuros abandonos 💚
-Esse se trata de um projeto [Next.js](https://nextjs.org/) inicializado com [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Esse projeto utiliza de React com Next.js [Next.js](https://nextjs.org/)
 
 ## Inicializando o projeto (aos colaboradores voluntários)
 
